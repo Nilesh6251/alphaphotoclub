@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Apex Photo Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation Header -->
+<header>
+    <div class="logo"> Apex Photo Club</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="packages.html">Packages</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- Portfolio Section -->
+<section class="gallery-section">
+    <h2 class="section-title">Our Portfolio</h2>
+
+    <!-- Category Filter -->
+    <div class="portfolio-categories">
+        <button class="category-btn active" data-category="all">All</button>
+        <button class="category-btn" data-category="wedding">Wedding Ceremony</button>
+        <button class="category-btn" data-category="pre-wedding">Pre-Wedding</button>
+        <button class="category-btn" data-category="reception">Reception</button>
+        <button class="category-btn" data-category="candid">Candid Moments</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+        <!-- Wedding Ceremony -->
+        <div class="gallery-item" data-category="wedding">
+            <a href="images/photo1.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo1.jpg" alt="Wedding Ceremony 1">
+            </a>
+            <div class="gallery-overlay"><span>👑</span></div>
+        </div>
+        <div class="gallery-item" data-category="wedding">
+            <a href="images/photo2.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo2.jpg" alt="Wedding Ceremony 2">
+            </a>
+            <div class="gallery-overlay"><span>👑</span></div>
+        </div>
+        <div class="gallery-item" data-category="wedding">
+            <a href="images/photo3.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo3.jpg" alt="Wedding Ceremony 3">
+            </a>
+            <div class="gallery-overlay"><span>👑</span></div>
+        </div>
+
+        <!-- Pre-Wedding -->
+        <div class="gallery-item" data-category="pre-wedding">
+            <a href="images/photo4.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo4.jpg" alt="Pre-Wedding 1">
+            </a>
+            <div class="gallery-overlay"><span>💕</span></div>
+        </div>
+        <div class="gallery-item" data-category="pre-wedding">
+            <a href="images/photo5.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo5.jpg" alt="Pre-Wedding 2">
+            </a>
+            <div class="gallery-overlay"><span>💕</span></div>
+        </div>
+        <div class="gallery-item" data-category="pre-wedding">
+            <a href="images/photo6.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo6.jpg" alt="Pre-Wedding 3">
+            </a>
+            <div class="gallery-overlay"><span>💕</span></div>
+        </div>
+
+        <!-- Reception -->
+        <div class="gallery-item" data-category="reception">
+            <a href="images/photo7.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo7.jpg" alt="Reception 1">
+            </a>
+            <div class="gallery-overlay"><span>✨</span></div>
+        </div>
+        <div class="gallery-item" data-category="reception">
+            <a href="images/photo8.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo8.jpg" alt="Reception 2">
+            </a>
+            <div class="gallery-overlay"><span>✨</span></div>
+        </div>
+        <div class="gallery-item" data-category="reception">
+            <a href="images/photo9.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo9.jpg" alt="Reception 3">
+            </a>
+            <div class="gallery-overlay"><span>✨</span></div>
+        </div>
+
+        <!-- Candid Moments -->
+        <div class="gallery-item" data-category="candid">
+            <a href="images/photo10.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo10.jpg" alt="Candid 1">
+            </a>
+            <div class="gallery-overlay"><span>📸</span></div>
+        </div>
+        <div class="gallery-item" data-category="candid">
+            <a href="images/photo11.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo11.jpg" alt="Candid 2">
+            </a>
+            <div class="gallery-overlay"><span>📸</span></div>
+        </div>
+        <div class="gallery-item" data-category="candid">
+            <a href="images/photo12.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="images/photo12.jpg" alt="Candid 3">
+            </a>
+            <div class="gallery-overlay"><span>📸</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-image" src="" alt="" class="lightbox-img">
+    </div>
+</div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/919876543210" class="whatsapp-btn" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>

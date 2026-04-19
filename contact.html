@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Apex Photo Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- Navigation Header -->
+<header>
+    <div class="logo"> Apex Photo Club</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="packages.html">Packages</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- Contact Container -->
+<div class="contact-container">
+    <div class="contact-header">
+        <h1>Get In Touch</h1>
+        <p>Let's create your perfect wedding memories. Book your session today!</p>
+    </div>
+
+    <!-- Contact Content -->
+    <div class="contact-content">
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            
+            <div class="contact-item">
+                <label>📞 Phone</label>
+                <a href="tel:+918815161755">+91 88151 61755</a>
+            </div>
+
+            <div class="contact-item">
+                <label><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                <a href="https://wa.me/918815161755">Send Message on WhatsApp</a>
+            </div>
+
+            <div class="contact-item">
+                <label>📧 Email</label>
+                <a href="mailto:apexphotoclub1@gmail.com">apexphotoclub1@gmail.com</a>
+            </div>
+
+            <div class="contact-item">
+                <label>📍 Location</label>
+                <span class="highlight-text">
+                    Sehore, Bhopal, Madhya Pradesh<br>
+                    Available across Madhya Pradesh & beyond
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <label>⏰ Availability</label>
+                <span class="highlight-text">
+                    Monday - Sunday<br>
+                    10:00 AM - 12:00 PM
+                </span>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="contact-form">
+            <h3>Booking Inquiry Form</h3>
+            
+            <form id="bookingForm" name="bookingForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="weddingDate">Wedding Date *</label>
+                    <input type="date" id="weddingDate" name="weddingDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="package">Package Interest *</label>
+                    <select id="package" name="package" required>
+                        <option value="">-- Select Package --</option>
+                        <option value="Shagun">silver Package (₹49,000)</option>
+                        <option value="Royal">Gold Package (₹69,000)</option>
+                        <option value="Maharaja">platinum Package (₹199,999)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Vision *</label>
+                    <textarea id="message" name="message" placeholder="Describe your wedding vision, preferences, or any special requests..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Social Links & Additional Info -->
+    <div class="trust-banner">
+        <h2>Follow Us</h2>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/apexphotoclub?igsh=MXZjMXgzaWt0ZWRvYg==" class="social-link instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/apexphotoclub" class="social-link facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/918815161755" class="social-link whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:apexphotoclub1@gmail.com" class="social-link gmail" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <p>
+            Follow us on Instagram for behind-the-scenes moments and latest portfolio updates!
+        </p>
+    </div>
+
+    <!-- Response Message -->
+    <div id="successMessage" style="display: none;">
+        <strong>Thank you for your inquiry!</strong><br>
+        We'll contact you within 24 hours to discuss your wedding photography needs.
+    </div>
+
+</div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/918815161755" class="whatsapp-btn" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Custom Node.js Backend Integration -->
+<script>
+// FORM SUBMIT
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const phone = document.getElementById("phone").value;
+  
+  // Validate phone number (basic validation)
+  if (!/^\d{10}$/.test(phone.replace(/[^\d]/g, ''))) {
+      alert('Please enter a valid 10-digit phone number');
+      return;
+  }
+
+  // Prepare data object
+  const data = {
+    name: document.getElementById("name").value,
+    phone: phone,
+    email: document.getElementById("email").value,
+    weddingDate: document.getElementById("weddingDate").value,
+    package: document.getElementById("package").value,
+    message: document.getElementById("message").value,
+  };
+
+  try {
+    // Send POST Request to Node.js Backend Server
+    const response = await fetch("http://localhost:5000/api/bookings", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+        // Show success message
+        const successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+            successMessage.style.display = 'block';
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                document.getElementById("bookingForm").reset();
+                successMessage.style.display = 'none';
+            }, 3000);
+        } else {
+            alert(result.message);
+            document.getElementById("bookingForm").reset();
+        }
+    } else {
+        throw new Error(result.message || "Failed to submit form");
+    }
+
+  } catch (error) {
+    console.error("Backend Error:", error);
+    alert("Error submitting form ❌. Ensure your backend server is running.");
+  }
+});
+</script>
+
+</body>
+</html>

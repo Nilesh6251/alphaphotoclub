@@ -1,0 +1,159 @@
+/* ==================== 
+   PREMIUM DARK & CINEMATIC THEME OVERRIDES
+   ==================== */
+
+:root {
+    --primary-dark: #070707;
+    --secondary-dark: #121212;
+    --gold: #d4af37;
+    --light-gold: #f3e5ab;
+    --white: #ffffff;
+    --text-muted: #888888;
+    --accent-maroon: #2a0800;
+}
+
+body {
+    background: var(--primary-dark) !important;
+    color: var(--white) !important;
+    cursor: none; /* Hide default cursor */
+    /* Add subtle film grain effect via noise image */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ==================== HEADER LOGO ALIGNMENT ==================== */
+header {
+    background: rgba(7, 7, 7, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.6rem !important;
+    color: var(--white) !important;
+    font-weight: 700;
+}
+
+.brand-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 0px 8px rgba(212, 175, 55, 0.3));
+}
+
+.brand-text {
+    letter-spacing: 3px;
+    color: var(--white);
+}
+
+nav a {
+    color: var(--text-muted) !important;
+}
+
+nav a::before {
+    background: var(--gold) !important;
+}
+
+nav a:hover {
+    color: var(--white) !important;
+}
+
+/* ==================== CUSTOM CURSOR ==================== */
+.custom-cursor {
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.15s ease-out, background 0.3s, border-color 0.3s;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+/* When hovering over interactive items */
+.custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.8);
+    background: var(--gold);
+    border-color: transparent;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+}
+
+/* ==================== SECTION OVERRIDES ==================== */
+.hero-text h1 {
+    color: var(--gold) !important;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+.hero-text p {
+    color: var(--white) !important;
+}
+
+.hero-text {
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(212, 175, 55, 0.1) !important;
+}
+
+.about-preview {
+    background: var(--primary-dark) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.about-preview h2, .section-title {
+    color: var(--white) !important;
+}
+
+.about-preview p {
+    color: var(--text-muted) !important;
+}
+
+.section-title::after {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent) !important;
+}
+
+/* Buttons */
+.btn {
+    background: transparent !important;
+    color: var(--white) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn:hover {
+    background: var(--white) !important;
+    color: var(--primary-dark) !important;
+}
+
+.btn-gold {
+    background: var(--gold) !important;
+    color: var(--primary-dark) !important;
+    border: none !important;
+}
+
+.btn-gold:hover {
+    background: transparent !important;
+    color: var(--gold) !important;
+    border: 1px solid var(--gold) !important;
+}
+
+/* Gallery Hover Enhancements */
+.gallery-item {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.overlay-content span {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: var(--gold) !important;
+    border-color: var(--gold) !important;
+}
+
+/* Magnetic effect class */
+.magnetic {
+    display: inline-block;
+}
