@@ -6,13 +6,13 @@ const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 const mongoSanitize = require('express-mongo-sanitize');
 const morgan = require('morgan');
-const connectDB = require('./config/db');
+// const connectDB = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to DB
-connectDB();
+// connectDB();
 
 // Middleware
 app.use(helmet());
@@ -36,9 +36,10 @@ app.get('/', (req, res) => {
 });
 
 // Require routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/posts', require('./routes/postRoutes'));
+// app.use('/api/auth', require('./routes/authRoutes'));
+// app.use('/api/users', require('./routes/userRoutes'));
+// app.use('/api/posts', require('./routes/postRoutes'));
+app.use('/api/bookings', require('./routes/bookingRoutes'));
 
 // Global Error Handler
 app.use((err, req, res, next) => {
