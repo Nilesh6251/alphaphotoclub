@@ -1,0 +1,6 @@
+/* Page fade transition */
+.page-fade {
+  animation: fadeIn 0.35s ease both;
+}
+
+/* App-level layout: nothing else needed since each page handles itself */
