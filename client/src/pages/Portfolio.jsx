@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { portfolioItems } from '../data/siteData';
+import { portfolioGroups } from '../data/siteData';
+import FullscreenLightbox from '../components/FullscreenLightbox';
 import './Portfolio.css';
 
 const CATEGORIES = [
@@ -16,41 +17,23 @@ const FALLBACK = [
   { id: 1,  src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=900', title: 'A Quiet Ceremony',    category: 'wedding',     placeholder: '' },
   { id: 2,  src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900', title: 'The First Look',      category: 'pre-wedding', placeholder: '' },
   { id: 3,  src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=900', title: 'Golden Details',      category: 'wedding',     placeholder: '' },
-  { id: 4,  src: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=900', title: 'Vow Exchange',        category: 'ceremony',    placeholder: '' },
+  { id: 4,  src: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=900', title: 'Vow Exchange',        category: 'wedding',     placeholder: '' },
   { id: 5,  src: 'https://images.unsplash.com/photo-1521543832500-49e69fb00a3a?q=80&w=900', title: 'Stolen Glance',       category: 'candid',      placeholder: '' },
   { id: 6,  src: 'https://images.unsplash.com/photo-1470116945706-e6bf5d5a53ca?q=80&w=900', title: 'The Dance Floor',     category: 'reception',   placeholder: '' },
   { id: 7,  src: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900', title: 'Evening Light',       category: 'reception',   placeholder: '' },
   { id: 8,  src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=900', title: 'Bridal Portraits',    category: 'pre-wedding', placeholder: '' },
   { id: 9,  src: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=900', title: 'Unscripted Joy',      category: 'candid',      placeholder: '' },
+  { id: 10, src: 'https://images.unsplash.com/photo-1460978812857-470ed1c77af0?q=80&w=900', title: 'Golden Hour',         category: 'pre-wedding', placeholder: '' },
 ];
 
 export default function Portfolio() {
   const [active, setActive]   = useState('all');
   const [lightbox, setLightbox] = useState(null);
   const [loaded, setLoaded]   = useState({});
-  const [lbClosing, setLbClosing] = useState(false);
   const gridRef = useRef(null);
 
-  const items = (portfolioItems?.length > 0 ? portfolioItems : FALLBACK);
-  const filtered = active === 'all' ? items : items.filter((i) => i.category === active);
-
-  /* ── Close lightbox with exit animation ── */
-  const closeLightbox = useCallback(() => {
-    setLbClosing(true);
-    setTimeout(() => { setLightbox(null); setLbClosing(false); }, 280);
-  }, []);
-
-  /* ── Keyboard nav ── */
-  useEffect(() => {
-    const handler = (e) => {
-      if (lightbox === null) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowRight')  setLightbox((p) => (p + 1) % filtered.length);
-      if (e.key === 'ArrowLeft')   setLightbox((p) => (p - 1 + filtered.length) % filtered.length);
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [lightbox, filtered.length, closeLightbox]);
+  const items = portfolioGroups?.[active]?.length > 0 ? portfolioGroups[active] : (active === 'all' ? FALLBACK.slice(0, 10) : FALLBACK.filter((i) => i.category === active));
+  const filtered = items;
 
   /* ── Scroll reveal for grid items ── */
   useEffect(() => {
@@ -115,16 +98,15 @@ export default function Portfolio() {
         </div>
       </nav>
 
+
       {/* ═══ GRID ═══ */}
       <main className="pf-container" ref={gridRef}>
         <div className="pf-grid">
           {filtered.map((item, idx) => {
-            /* Give every 7th item (0-indexed: 3rd in a row of 3) a tall span for rhythm */
-            const isTall = idx % 7 === 2;
             return (
               <div
                 key={item.id}
-                className={`p-item ${isTall ? 'p-item--tall' : ''}`}
+                className="p-item"
                 onClick={() => setLightbox(idx)}
                 style={{ transitionDelay: `${(idx % 9) * 0.06}s` }}
                 role="button"
@@ -161,76 +143,13 @@ export default function Portfolio() {
 
       {/* ═══ LIGHTBOX ═══ */}
       {lightbox !== null && (
-        <div
-          className={`lb-backdrop ${lbClosing ? 'is-closing' : ''}`}
-          onClick={closeLightbox}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image viewer"
-        >
-          <div className="lb-modal" onClick={(e) => e.stopPropagation()}>
-
-            {/* Progress bar */}
-            <div className="lb-progress" aria-hidden="true">
-              <div
-                className="lb-progress-fill"
-                style={{ width: `${((lightbox + 1) / filtered.length) * 100}%` }}
-              />
-            </div>
-
-            {/* Close */}
-            <button className="lb-close" onClick={closeLightbox} aria-label="Close">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </button>
-
-            {/* Prev */}
-            <button
-              className="lb-nav lb-prev"
-              onClick={() => setLightbox((p) => (p - 1 + filtered.length) % filtered.length)}
-              aria-label="Previous image"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M13 4l-6 6 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-
-            {/* Image */}
-            <div className="lb-img-wrapper">
-              <img
-                key={filtered[lightbox].src}
-                src={filtered[lightbox].src}
-                alt={filtered[lightbox].title}
-                className="lb-img"
-                onError={(e) => handleError(e, filtered[lightbox])}
-              />
-            </div>
-
-            {/* Next */}
-            <button
-              className="lb-nav lb-next"
-              onClick={() => setLightbox((p) => (p + 1) % filtered.length)}
-              aria-label="Next image"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-
-            {/* Caption */}
-            <div className="lb-caption">
-              <div className="lb-caption-left">
-                <span className="lb-cat">{filtered[lightbox].category}</span>
-                <h3 className="lb-title">{filtered[lightbox].title}</h3>
-              </div>
-              <span className="lb-counter">
-                {String(lightbox + 1).padStart(2, '0')} / {String(filtered.length).padStart(2, '0')}
-              </span>
-            </div>
-
-          </div>
-        </div>
+        <FullscreenLightbox
+          items={filtered}
+          index={lightbox}
+          onClose={() => setLightbox(null)}
+          onPrevious={() => setLightbox((p) => (p - 1 + filtered.length) % filtered.length)}
+          onNext={() => setLightbox((p) => (p + 1) % filtered.length)}
+        />
       )}
 
       {/* ═══ CTA ═══ */}

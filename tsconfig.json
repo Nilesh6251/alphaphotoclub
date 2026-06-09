@@ -10,13 +10,12 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "backend/**/*",
-    "Apex-Photo-Club/**/*"
+    "server.js",
+    "routes/**/*"
   ],
   "exclude": [
     "node_modules",
-    "backend/node_modules",
-    "Apex-Photo-Club/node_modules",
-    "dist"
+    "dist",
+    "client"
   ]
 }

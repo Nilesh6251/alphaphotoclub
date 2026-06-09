@@ -2,32 +2,115 @@
 // APEX PHOTO CLUB — Site Content Data
 // =============================================
 
-export const galleryHighlights = [
-  { id: 1, src: '/images/photo1.jpg', title: 'Eternal Love', category: 'wedding', placeholder: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80' },
-  { id: 2, src: '/images/photo2.jpg', title: 'Winter Romance', category: 'pre-wedding', placeholder: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80' },
-  { id: 3, src: '/images/photo3.jpg', title: 'Garden Love', category: 'wedding', placeholder: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80' },
-  { id: 4, src: '/images/photo4.jpg', title: 'Golden Hour', category: 'pre-wedding', placeholder: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&q=80' },
-  { id: 5, src: '/images/photo7.jpg', title: 'Heritage Charm', category: 'reception', placeholder: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80' },
-  { id: 6, src: '/images/photo11.jpg', title: 'Serenade', category: 'candid', placeholder: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=80' },
-  { id: 7, src: '/images/photo8.jpg', title: 'Garden Bliss', category: 'reception', placeholder: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80' },
-  { id: 8, src: '/images/photo12.jpg', title: 'Beautiful Bond', category: 'candid', placeholder: 'https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=80' },
-  { id: 9, src: '/images/photo9.jpg', title: 'Timeless Elegance', category: 'wedding', placeholder: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=600&q=80' },
+import img1 from './images/image1.jpg';
+import img2 from './images/image2.jpg';
+import img3 from './images/image3.jpg';
+import img4 from './images/image20 (2).jpg';
+import img5 from './images/image5.jpg';
+import img6 from './images/image6.jpg';
+import img7 from './images/image7.jpg';
+import img8 from './images/image8.jpg';
+import img9 from './images/image9.jpg';
+import img10 from './images/image10.jpg';
+import img11 from './images/image11.jpg';
+import img12 from './images/image12.jpg';
+import img13 from './images/image13.jpg';
+import img14 from './images/image14.jpg';
+import img16 from './images/image16.jpg';
+import img17 from './images/image17.jpg';
+import img18 from './images/image18.jpg';
+import img19 from './images/image19.jpg';
+import img21 from './images/image21.jpg';
+import img22 from './images/imagee22.jpg';
+import img23 from './images/image23.jpeg';
+import img24 from './images/image24.jpeg';
+import img25 from './images/image25.jpeg';
+import img26 from './images/image26.jpeg';
+import img27 from './images/image27.jpeg';
+import img28 from './images/image28.jpeg';
+import img29 from './images/image29.jpeg';
+import img30 from './images/image30.jpeg';
+import img31 from './images/image31.jpeg';
+import img32 from './images/image32.jpg';
+import img33 from './images/image33.jpg';
+import img34 from './images/image34.jpg';
+import img35 from './images/image35.jpg';
+import img36 from './images/image36.jpg';
+import img37 from './images/image37.jpg';
+import img38 from './images/image38.jpg';
+import img39 from './images/image39.jpg';
+import img40 from './images/image40.jpg';
+import img41 from './images/image41.jpg';
+
+const galleryItems = [
+  { id: 1, src: img10, title: 'Golden Hour', category: 'pre-wedding', placeholder: '' },
+  { id: 2, src: img11, title: 'First Look', category: 'pre-wedding', placeholder: '' },
+  { id: 3, src: img12, title: 'Promise', category: 'pre-wedding', placeholder: '' },
+  { id: 4, src: img17, title: 'Evening Glow', category: 'pre-wedding', placeholder: '' },
+  { id: 5, src: img18, title: 'Forever Begins', category: 'pre-wedding', placeholder: '' },
+  { id: 6, src: img19, title: 'Together', category: 'pre-wedding', placeholder: '' },
+  { id: 7, src: img21, title: 'Soft Light', category: 'pre-wedding', placeholder: '' },
+  { id: 8, src: img22, title: 'Engagement Glow', category: 'pre-wedding', placeholder: '' },
+  { id: 9, src: img23, title: 'Vow Preview', category: 'pre-wedding', placeholder: '' },
+  { id: 10, src: img24, title: 'Golden Walk', category: 'pre-wedding', placeholder: '' },
 ];
 
-export const portfolioItems = [
-  { id: 1, src: '/images/photo1.jpg', title: 'Sacred Vows', category: 'wedding', placeholder: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80' },
-  { id: 2, src: '/images/photo2.jpg', title: 'Winter Romance', category: 'wedding', placeholder: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80' },
-  { id: 3, src: '/images/photo3.jpg', title: 'Garden Ceremony', category: 'wedding', placeholder: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80' },
-  { id: 4, src: '/images/photo4.jpg', title: 'Golden Hour', category: 'pre-wedding', placeholder: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80' },
-  { id: 5, src: '/images/photo5.jpg', title: 'Mountain Escape', category: 'pre-wedding', placeholder: 'https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=700&q=80' },
-  { id: 6, src: '/images/photo6.jpg', title: 'Lakeside Dreams', category: 'pre-wedding', placeholder: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=700&q=80' },
-  { id: 7, src: '/images/photo7.jpg', title: 'Heritage Charm', category: 'reception', placeholder: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=80' },
-  { id: 8, src: '/images/photo8.jpg', title: 'Grand Celebration', category: 'reception', placeholder: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80' },
-  { id: 9, src: '/images/photo9.jpg', title: 'Royal Evening', category: 'reception', placeholder: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=80' },
-  { id: 10, src: '/images/photo10.jpg', title: 'Stolen Glance', category: 'candid', placeholder: 'https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=700&q=80' },
-  { id: 11, src: '/images/photo11.jpg', title: 'Pure Joy', category: 'candid', placeholder: 'https://images.unsplash.com/photo-1508161542028-f05b1e2dc15a?w=700&q=80' },
-  { id: 12, src: '/images/photo12.jpg', title: 'Heartfelt Moment', category: 'candid', placeholder: 'https://images.unsplash.com/photo-1504714146340-959ca07e1f38?w=700&q=80' },
-];
+export const portfolioGroups = {
+  all: [
+    { id: 1, src: img4, title: 'Golden Hour', category: 'pre-wedding' },
+    { id: 2, src: img14, title: 'Classic Portrait', category: 'reception' },
+    { id: 3, src: img23, title: 'Vow Preview', category: 'pre-wedding' },
+    { id: 4, src: img41, title: 'Last Light', category: 'pre-wedding' },
+    { id: 5, src: img21, title: 'Soft Light', category: 'candid' },
+    { id: 6, src: img40, title: 'Forever Starts', category: 'candid' },
+    { id: 7, src: img22, title: 'Engagement Glow', category: 'pre-wedding' },
+    { id: 8, src: img19, title: 'Together', category: 'pre-wedding' },
+    { id: 9, src: img3, title: 'Garden Love', category: 'wedding' },
+    { id: 10, src: img1, title: 'Eternal Love', category: 'wedding' },
+  ],
+  wedding: [
+    { id: 11, src: img33, title: 'Closing In', category: 'wedding' },
+    { id: 12, src: img37, title: 'Warm Embrace', category: 'wedding' },
+    { id: 13, src: img34, title: 'The Pose', category: 'wedding' },
+    { id: 14, src: img38, title: 'Shared Moment', category: 'wedding' },
+    { id: 15, src: img39, title: 'Wedding Glow', category: 'wedding' },
+    { id: 16, src: img36, title: 'Togetherness', category: 'wedding' },
+    { id: 17, src: img32, title: 'Captured Smile', category: 'wedding' },
+  ],
+  'pre-wedding': [
+    { id: 18, src: img17, title: 'Evening Glow', category: 'pre-wedding' },
+    { id: 19, src: img22, title: 'Engagement Glow', category: 'pre-wedding' },
+    { id: 20, src: img18, title: 'Forever Begins', category: 'pre-wedding' },
+    { id: 21, src: img31, title: 'Quiet Joy', category: 'pre-wedding' },
+    { id: 22, src: img13, title: 'Floral Promise', category: 'pre-wedding' },
+    { id: 23, src: img28, title: 'Promise in Motion', category: 'pre-wedding' },
+    { id: 24, src: img10, title: 'Golden Hour', category: 'pre-wedding' },
+    { id: 25, src: img12, title: 'Promise', category: 'pre-wedding' },
+    { id: 26, src: img11, title: 'First Look', category: 'pre-wedding' },
+  ],
+  candid: [
+    { id: 27, src: img35, title: 'Portrait Edit', category: 'candid' },
+    { id: 28, src: img30, title: 'Sunlit Details', category: 'candid' },
+    { id: 29, src: img29, title: 'Golden Frame', category: 'candid' },
+    { id: 30, src: img28, title: 'Promise in Motion', category: 'candid' },
+    { id: 31, src: img5, title: 'Heritage Charm', category: 'candid' },
+    { id: 32, src: img21, title: 'Soft Light', category: 'candid' },
+    { id: 33, src: img40, title: 'Forever Starts', category: 'candid' },
+    { id: 34, src: img37, title: 'Warm Embrace', category: 'candid' },
+    { id: 35, src: img36, title: 'Togetherness', category: 'candid' },
+  ],
+  reception: [
+    { id: 36, src: img7, title: 'Garden Bliss', category: 'reception' },
+    { id: 37, src: img8, title: 'Beautiful Bond', category: 'reception' },
+    { id: 38, src: img9, title: 'Timeless Elegance', category: 'reception' },
+    { id: 39, src: img16, title: 'Stolen Look', category: 'reception' },
+    { id: 40, src: img6, title: 'Serenade', category: 'reception' },
+  ],
+};
+
+export const portfolioItems = [...portfolioGroups.all, ...portfolioGroups.wedding, ...portfolioGroups['pre-wedding'], ...portfolioGroups.candid, ...portfolioGroups.reception];
+
+export const galleryHighlights = galleryItems;
 
 export const packages = [
   {
@@ -103,7 +186,7 @@ export const testimonials = [
     location: 'Indore Wedding, 2025',
     stars: 5,
   },
-  {
+  {  
     id: 2,
     text: '"From pre-wedding shoots to the main event, Deven was amazing. His cinematic wedding video is something we treasured forever. The Gold Package was worth every penny. Highly recommended!"',
     author: 'Ananya & Vikram Patel',

@@ -39,18 +39,12 @@ export default function Footer() {
           <h4>Inquiries</h4>
           <ul>
             <li><FiMapPin className="icon" /> Sehore, Bhopal, MP</li>
-            <li><a href="tel:+918602237072"><FiPhone className="icon" /> +91 86022 37072</a></li>
+            <li><a href="tel:+918815161755"><FiPhone className="icon" /> +91 88151 61755</a></li>
             <li><a href="mailto:apexphotoclub1@gmail.com"><FiMail className="icon" /> apexphotoclub1@gmail.com</a></li>
           </ul>
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <div className="container bottom-inner">
-          <p>&copy; {currentYear} Apex Photo Club. All rights reserved.</p>
-          <p className="designer-credit">Designed for Excellence by Pawan Kushwaha</p>
-        </div>
-      </div>
     </footer>
   );
 }

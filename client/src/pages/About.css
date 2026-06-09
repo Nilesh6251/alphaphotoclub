@@ -29,6 +29,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   filter: brightness(0.35) grayscale(40%);
 }
 
@@ -134,8 +135,8 @@
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  transform: translate(15px, 15px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  transform: translate(10px, 10px);
   z-index: 0;
 }
 
@@ -143,14 +144,20 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 600px;
-  object-fit: cover;
-  filter: grayscale(20%) contrast(1.1);
-  transition: filter 1s ease;
+  height: auto;
+  max-height: 720px;
+  object-fit: contain;
+  background: #f3efe6;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  filter: grayscale(4%) contrast(1.02) saturate(0.98);
+  transition: filter 0.5s ease, transform 0.35s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
 }
 
 .about-manifesto-image:hover img {
-  filter: grayscale(0%) contrast(1);
+  transform: translateY(-3px);
+  filter: grayscale(0%) contrast(1) saturate(1);
 }
 
 /* ── Approach Section (Smoked Glass) ── */
@@ -315,7 +322,7 @@
   }
   .about-manifesto-text { order: 2; }
   .about-manifesto-image { order: 1; }
-  .about-manifesto-image img { height: 450px; }
+  .about-manifesto-image img { height: 540px; }
   
   .approach-grid {
     grid-template-columns: 1fr;

@@ -4,7 +4,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const compression = require('compression');
-const mongoSanitize = require('express-mongo-sanitize');
 const morgan = require('morgan');
 // const connectDB = require('./config/db');
 
@@ -20,7 +19,6 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // Allow 
 app.use(cors());
 app.use(express.json());
 app.use(compression()); // Optimize API payload size
-app.use(mongoSanitize()); // Prevent NoSQL injection attacks
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms')); // Log requests footprint
 
 // Rate Limiting

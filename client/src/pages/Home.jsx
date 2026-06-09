@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { services, galleryHighlights, testimonials } from '../data/siteData';
+import { services, galleryHighlights, testimonials, stats } from '../data/siteData';
+import FullscreenLightbox from '../components/FullscreenLightbox';
+import bgImg from '../data/images/image1.jpg';
 import './Home.css';
 
 export default function Home() {
@@ -12,7 +14,14 @@ export default function Home() {
   const heroBgRef = useRef(null);
   
   const [activeService, setActiveService] = useState(null);
-  const [heroLoaded, setHeroLoaded] = useState(false);
+  const [lightbox, setLightbox] = useState(null);
+
+  const galleryItems = [
+    { src: bgImg, title: 'Cinematic Wedding', category: 'Hero' },
+    { src: galleryHighlights[1]?.src, title: 'Details', category: 'Manifesto' },
+    ...(galleryHighlights?.length > 0 ? galleryHighlights.slice(0, 6) : []),
+    { src: galleryHighlights[2]?.src, title: 'Featured Frame', category: 'CTA' },
+  ].filter((item) => item?.src);
 
   /* ── Scroll-based parallax (Refactored for Performance) ── */
   useEffect(() => {
@@ -57,10 +66,6 @@ export default function Home() {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const handleHeroLoad = () => {
-    setTimeout(() => setHeroLoaded(true), 100);
-  };
-
   return (
     <div className="editorial-wrapper">
       {/* Custom cursor blob using Ref directly */}
@@ -72,14 +77,18 @@ export default function Home() {
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="hero-editorial" ref={heroRef}>
         <div
-          className={`hero-image-wrapper ${heroLoaded ? 'is-revealed' : ''}`}
+          className="hero-image-wrapper is-revealed"
           ref={heroBgRef}
+          role="button"
+          tabIndex={0}
+          onClick={() => setLightbox(0)}
+          onKeyDown={(event) => event.key === 'Enter' && setLightbox(0)}
+          aria-label="Open hero image"
         >
           <img
-            src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2000"
+            src={bgImg}
             alt="Cinematic Wedding"
             className="hero-img"
-            onLoad={handleHeroLoad}
           />
           <div className="hero-vignette" />
         </div>
@@ -125,13 +134,9 @@ export default function Home() {
         </div>
 
         <div className="hero-stats fade-up" style={{ transitionDelay: '1.2s' }}>
-          {[
-            { value: '600+', label: 'Weddings' },
-            { value: '12', label: 'Years' },
-            { value: '20+', label: 'Countries' },
-          ].map((s) => (
-            <div className="hero-stat" key={s.label}>
-              <span className="stat-value">{s.value}</span>
+          {(stats?.length > 0 ? stats : []).map((s, idx) => (
+            <div className="hero-stat" key={s.label || idx}>
+              <span className="stat-value">{s.value}{s.suffix}</span>
               <span className="stat-label">{s.label}</span>
             </div>
           ))}
@@ -150,9 +155,16 @@ export default function Home() {
       {/* ═══════════════ MANIFESTO ═══════════════ */}
       <section className="manifesto-section">
         <div className="container manifesto-grid">
-          <div className="manifesto-image scale-reveal">
+          <div
+            className="manifesto-image scale-reveal"
+            role="button"
+            tabIndex={0}
+            onClick={() => setLightbox(1)}
+            onKeyDown={(event) => event.key === 'Enter' && setLightbox(1)}
+            aria-label="Open manifesto image"
+          >
             <img
-              src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000"
+              src={galleryHighlights[1]?.src}
               alt="Details"
             />
             <div className="manifesto-img-caption">
@@ -196,12 +208,13 @@ export default function Home() {
           </div>
 
           <div className="staggered-grid">
-            {(galleryHighlights?.length > 0 ? galleryHighlights : fallbackGallery).slice(0, 3).map((img, idx) => (
-              <Link
-                to="/portfolio"
+            {(galleryHighlights?.length > 0 ? galleryHighlights : fallbackGallery).slice(0, 6).map((img, idx) => (
+              <button
                 key={img.id || idx}
-                className={`staggered-item item-${idx + 1} clip-reveal`}
+                className={`staggered-item item-${(idx % 3) + 1} fade-up`}
                 style={{ transitionDelay: `${idx * 0.15}s` }}
+                onClick={() => setLightbox(idx + 2)}
+                aria-label={`Open ${img.title}`}
               >
                 <div className="staggered-img-wrapper">
                   <img src={img.src} alt={img.title} loading="lazy" />
@@ -213,7 +226,7 @@ export default function Home() {
                   <span className="meta-category">{img.category}</span>
                   <h3 className="meta-title">{img.title}</h3>
                 </div>
-              </Link>
+              </button>
             ))}
           </div>
 
@@ -278,9 +291,16 @@ export default function Home() {
 
       {/* ═══════════════ CTA ═══════════════ */}
       <section className="cta-editorial fade-up">
-        <div className="cta-bg">
+        <div
+          className="cta-bg"
+          role="button"
+          tabIndex={0}
+          onClick={() => setLightbox(galleryItems.length - 1)}
+          onKeyDown={(event) => event.key === 'Enter' && setLightbox(galleryItems.length - 1)}
+          aria-label="Open featured CTA image"
+        >
           <img
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000"
+            src={galleryHighlights[2]?.src}
             alt=""
             role="presentation"
           />
@@ -298,6 +318,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {lightbox !== null && (
+        <FullscreenLightbox
+          items={galleryItems}
+          index={lightbox}
+          onClose={() => setLightbox(null)}
+          onPrevious={() => setLightbox((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)}
+          onNext={() => setLightbox((prev) => (prev + 1) % galleryItems.length)}
+        />
+      )}
     </div>
   );
 }

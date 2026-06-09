@@ -1,9 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { galleryHighlights, stats } from '../data/siteData';
+import FullscreenLightbox from '../components/FullscreenLightbox';
 import './About.css';
 
 export default function About() {
   const observerRef = useRef(null);
+  const [lightbox, setLightbox] = useState(null);
+
+  const aboutImages = [
+    { src: galleryHighlights[6]?.src, title: 'Photography Studio', category: 'Hero' },
+    { src: galleryHighlights[7]?.src, title: 'Editorial Wedding Photographer', category: 'Manifesto' },
+  ].filter((item) => item?.src);
 
   // Buttery-smooth scroll reveal logic
   useEffect(() => {
@@ -30,9 +38,16 @@ export default function About() {
       
       {/* ── HERO SECTION ── */}
       <section className="about-hero">
-        <div className="about-hero-bg">
+        <div
+          className="about-hero-bg"
+          role="button"
+          tabIndex={0}
+          onClick={() => setLightbox(0)}
+          onKeyDown={(event) => event.key === 'Enter' && setLightbox(0)}
+          aria-label="Open about hero image"
+        >
           <img 
-            src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2000" 
+            src={galleryHighlights[6]?.src} 
             alt="Photography Studio" 
           />
           <div className="about-hero-vignette"></div>
@@ -69,21 +84,27 @@ export default function About() {
           <div className="about-stats">
             <div className="about-stats-line"></div>
             <div className="stats-grid">
-              <div className="stat-box">
-                <span className="stat-num">12+</span>
-                <span className="stat-label">Years Experience</span>
-              </div>
-              <div className="stat-box">
-                <span className="stat-num">600+</span>
-                <span className="stat-label">Stories Told</span>
-              </div>
+              {(stats?.length > 0 ? stats : []).map((s, idx) => (
+                <div className="stat-box" key={s.label || idx}>
+                  <span className="stat-num">{s.value}{s.suffix}</span>
+                  <span className="stat-label">{s.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="about-manifesto-image reveal" style={{ transitionDelay: '0.3s' }}>
+        <div
+          className="about-manifesto-image reveal"
+          style={{ transitionDelay: '0.3s' }}
+          role="button"
+          tabIndex={0}
+          onClick={() => setLightbox(1)}
+          onKeyDown={(event) => event.key === 'Enter' && setLightbox(1)}
+          aria-label="Open manifesto image"
+        >
           <img 
-            src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800" 
+            src={galleryHighlights[7]?.src} 
             alt="Editorial Wedding Photographer" 
           />
         </div>
@@ -129,6 +150,14 @@ export default function About() {
           Inquire Availability
         </Link>
       </section>
+
+      {lightbox !== null && (
+        <FullscreenLightbox
+          items={aboutImages}
+          index={lightbox}
+          onClose={() => setLightbox(null)}
+        />
+      )}
 
     </div>
   );

@@ -30,5 +30,8 @@
     "nodemailer": "^8.0.5",
     "pm2": "^6.0.14",
     "redis": "^5.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
