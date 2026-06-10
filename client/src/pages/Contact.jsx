@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { contactInfo } from '../data/siteData';
+import { contactInfo, packages } from '../data/siteData';
 import './Contact.css';
 
 const INITIAL_FORM = {
@@ -9,6 +9,14 @@ const INITIAL_FORM = {
 export default function Contact() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
+
+  const packageOptions = packages?.length > 0 ? packages : [
+    { id: 'silver', name: 'Silver Package', price: '₹49,000' },
+    { id: 'gold', name: 'Gold Package', price: '₹69,000' },
+    { id: 'platinum', name: 'Platinum Package', price: '₹1,19,000' },
+  ];
+
+  const selectedPackage = packageOptions.find((pkg) => pkg.name === form.package);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -175,11 +183,18 @@ export default function Contact() {
                   <label htmlFor="package">Package Interest *</label>
                   <select id="package" name="package" value={form.package} onChange={handleChange} required>
                     <option value="">— Select a Package —</option>
-                    <option value="Silver">Silver Package (₹49,000)</option>
-                    <option value="Gold">Gold Package (₹69,000)</option>
-                    <option value="Platinum">Platinum Package (₹1,19,000)</option>
+                    {packageOptions.map((pkg) => (
+                      <option key={pkg.id} value={pkg.name}>
+                        {pkg.name} ({pkg.price})
+                      </option>
+                    ))}
                     <option value="Custom">Custom / Unsure</option>
                   </select>
+                  <small className="form-hint">
+                    {selectedPackage
+                      ? `Estimated payment: ${selectedPackage.price}`
+                      : 'Select a package to see the estimated payment here.'}
+                  </small>
                 </div>
 
                 <div className="form-group">

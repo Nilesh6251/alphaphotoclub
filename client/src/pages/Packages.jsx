@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { packages } from '../data/siteData';
+import { packages, addons } from '../data/siteData';
 import './Packages.css';
 
 export default function Packages() {
@@ -84,6 +84,38 @@ export default function Packages() {
               >
                 Reserve Date
               </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── ADD-ONS GRID ── */}
+      <section className="addons-section">
+        <div className="addons-header reveal">
+          <span className="section-badge">Optional Add-ons</span>
+          <h2>
+            Enhance Your <span className="gold-text">Coverage</span>
+          </h2>
+          <p>
+            Add extra moments, formats, and delivery options to any collection.
+          </p>
+        </div>
+
+        <div className="addons-grid">
+          {addons.map((addon, idx) => (
+            <div
+              key={addon.name}
+              className="addon-card reveal"
+              style={{ transitionDelay: `${idx * 0.08}s` }}
+            >
+              <div className="addon-icon">{addon.icon}</div>
+              <div className="addon-meta">
+                <div className="addon-topline">
+                  <h3>{addon.name}</h3>
+                  <span className="addon-price">{addon.price}</span>
+                </div>
+                <p>{addon.desc}</p>
+              </div>
             </div>
           ))}
         </div>

@@ -238,11 +238,11 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  background: #f3efe6;
+  background: linear-gradient(180deg, rgba(243, 239, 230, 0.94), rgba(26, 26, 26, 0.96));
   aspect-ratio: 3 / 4;
-  border-radius: 16px;
-  border: 1px solid rgba(212, 175, 55, 0.18);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  border-radius: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
 
   /* Reveal animation */
   opacity: 0;
@@ -252,27 +252,45 @@ a { text-decoration: none; color: inherit; }
     transform 0.7s var(--ts);
 }
 
+.p-item:nth-child(4n + 1) { transform: rotate(-1.25deg) translateY(0); }
+.p-item:nth-child(4n + 2) { transform: rotate(1.1deg) translateY(2rem); }
+.p-item:nth-child(4n + 3) { transform: rotate(-0.8deg) translateY(1rem); }
+.p-item:nth-child(4n + 4) { transform: rotate(1.5deg) translateY(3rem); }
+
 .p-item.is-visible {
   opacity: 1;
   transform: scale(1);
 }
 
-.p-item:hover { z-index: 2; }
+.p-item:hover {
+  z-index: 2;
+  transform: translateY(-10px) rotate(0deg) scale(1.01);
+}
 
 .p-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center center;
   display: block;
-  background: #f3efe6;
+  background: linear-gradient(180deg, rgba(243, 239, 230, 0.92), rgba(26, 26, 26, 0.92));
   transform: scale(1);
-  transition: transform 0.35s ease, filter 0.4s ease, opacity 0.5s ease;
-  filter: brightness(1) saturate(0.96);
+  transition: transform 0.55s var(--ts), filter 0.55s ease, opacity 0.5s ease;
+  filter: grayscale(12%) sepia(5%) brightness(0.96) saturate(0.92);
 }
 
 .p-item:hover img {
-  transform: scale(1.01);
-  filter: brightness(1) saturate(1);
+  transform: scale(1.04);
+  filter: grayscale(0%) sepia(0%) brightness(1) saturate(1);
+}
+
+.p-item::after {
+  content: '';
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(244, 240, 234, 0.08);
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Skeleton shimmer */
@@ -301,8 +319,8 @@ a { text-decoration: none; color: inherit; }
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(5, 5, 5, 0.34) 0%,
-    rgba(5, 5, 5, 0.08) 50%,
+    rgba(5, 5, 5, 0.5) 0%,
+    rgba(5, 5, 5, 0.1) 50%,
     transparent 100%
   );
   opacity: 0;
@@ -318,6 +336,26 @@ a { text-decoration: none; color: inherit; }
   transform: translateY(10px);
   transition: transform 0.35s ease;
   width: 100%;
+}
+
+.p-item:hover .p-overlay-inner {
+  transform: translateY(0);
+}
+
+.p-item[data-category='pre-wedding'] img {
+  object-position: center 26%;
+}
+
+.p-item[data-category='wedding'] img {
+  object-position: center 18%;
+}
+
+.p-item[data-category='reception'] img {
+  object-position: center 30%;
+}
+
+.p-item[data-category='candid'] img {
+  object-position: center 24%;
 }
 
 .p-cat,

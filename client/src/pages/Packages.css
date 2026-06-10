@@ -47,6 +47,97 @@
   padding: 0 1.5rem;
 }
 
+/* ── Add-ons Section ── */
+.addons-section {
+  max-width: 1200px;
+  margin: 0 auto 8rem;
+  padding: 0 1.5rem;
+}
+
+.addons-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+}
+
+.addons-header h2 {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 1rem 0;
+}
+
+.addons-header p {
+  color: #a3a3a3;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.addon-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(26, 26, 26, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.addon-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.addon-icon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  font-size: 1.5rem;
+}
+
+.addon-meta {
+  flex: 1;
+}
+
+.addon-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.addon-topline h3 {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.addon-price {
+  color: var(--rose, #d4af37);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.addon-meta p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 .packages-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -317,6 +408,10 @@
   .packages-grid {
     grid-template-columns: 1fr;
     max-width: 500px;
+
+  .addons-grid {
+    grid-template-columns: 1fr;
+  }
     margin: 0 auto;
     gap: 3rem;
   }
@@ -332,6 +427,11 @@
   .promise-grid {
     grid-template-columns: 1fr;
     gap: 4rem;
+  }
+
+  .addon-topline {
+    flex-direction: column;
+    gap: 0.35rem;
   }
 
   .desktop-only {

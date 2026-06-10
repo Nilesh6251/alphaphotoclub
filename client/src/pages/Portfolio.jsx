@@ -107,6 +107,7 @@ export default function Portfolio() {
               <div
                 key={item.id}
                 className="p-item"
+                data-category={item.category}
                 onClick={() => setLightbox(idx)}
                 style={{ transitionDelay: `${(idx % 9) * 0.06}s` }}
                 role="button"

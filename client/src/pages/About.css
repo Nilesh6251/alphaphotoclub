@@ -30,7 +30,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: brightness(0.35) grayscale(40%);
+  filter: brightness(0.38) grayscale(28%) sepia(8%);
 }
 
 .about-hero-vignette {
@@ -146,18 +146,30 @@
   width: 100%;
   height: auto;
   max-height: 720px;
-  object-fit: contain;
-  background: #f3efe6;
-  border-radius: 16px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center center;
+  background: linear-gradient(180deg, rgba(243, 239, 230, 0.92), rgba(26, 26, 26, 0.92));
+  border-radius: 18px;
   border: 1px solid rgba(212, 175, 55, 0.18);
-  filter: grayscale(4%) contrast(1.02) saturate(0.98);
-  transition: filter 0.5s ease, transform 0.35s ease;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  filter: grayscale(8%) sepia(5%) contrast(1.02) saturate(0.92);
+  transition: filter 0.5s ease, transform 0.45s ease, box-shadow 0.45s ease;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
 }
 
 .about-manifesto-image:hover img {
-  transform: translateY(-3px);
-  filter: grayscale(0%) contrast(1) saturate(1);
+  transform: translateY(-4px) scale(1.012);
+  filter: grayscale(0%) sepia(0%) contrast(1) saturate(1);
+}
+
+.about-hero-bg::after,
+.about-manifesto-image::after {
+  content: '';
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(244, 240, 234, 0.08);
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* ── Approach Section (Smoked Glass) ── */

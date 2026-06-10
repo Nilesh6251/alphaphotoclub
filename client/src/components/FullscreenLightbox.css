@@ -30,6 +30,12 @@
   padding: 1rem;
   background: transparent;
   filter: none;
+  animation: fsImageIn 0.35s ease;
+}
+
+@keyframes fsImageIn {
+  from { opacity: 0; transform: scale(0.99); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .fs-lightbox__meta {

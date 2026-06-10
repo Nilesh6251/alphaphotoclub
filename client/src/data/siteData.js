@@ -65,7 +65,7 @@ export const portfolioGroups = {
     { id: 6, src: img40, title: 'Forever Starts', category: 'candid' },
     { id: 7, src: img22, title: 'Engagement Glow', category: 'pre-wedding' },
     { id: 8, src: img19, title: 'Together', category: 'pre-wedding' },
-    { id: 9, src: img3, title: 'Garden Love', category: 'wedding' },
+    { id: 9, src: img3, title: 'Garden ', category: 'wedding' },
     { id: 10, src: img1, title: 'Eternal Love', category: 'wedding' },
   ],
   wedding: [
@@ -241,7 +241,7 @@ export const contactInfo = {
   phoneHref: 'tel:+918815161755',
   whatsapp: 'https://wa.me/918815161755',
   email: 'apexphotoclub1@gmail.com',
-  location: 'Sehore, Bhopal, Madhya Pradesh',
+  location: ' Bhopal, Madhya Pradesh',
   availability: 'Monday – Sunday · 10:00 AM – 12:00 PM',
   instagram: 'https://www.instagram.com/apexphotoclub?igsh=MXZjMXgzaWt0ZWRvYg==',
   facebook: 'https://facebook.com/apexphotoclub',
