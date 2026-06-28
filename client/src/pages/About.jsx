@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { galleryHighlights, stats } from '../data/siteData';
 import FullscreenLightbox from '../components/FullscreenLightbox';
+import LazyImage from '../components/LazyImage';
 import './About.css';
 
 export default function About() {
@@ -46,7 +47,7 @@ export default function About() {
           onKeyDown={(event) => event.key === 'Enter' && setLightbox(0)}
           aria-label="Open about hero image"
         >
-          <img 
+          <LazyImage 
             src={galleryHighlights[6]?.src} 
             alt="Photography Studio" 
           />
@@ -63,8 +64,8 @@ export default function About() {
       </section>
 
       {/* ── MANIFESTO & STORY SECTION ── */}
-      <section className="about-manifesto">
-        <div className="about-manifesto-text reveal" style={{ transitionDelay: '0.1s' }}>
+      <section className="about-manifesto bento-container">
+        <div className="about-manifesto-text bento-item bento-col-span-2 bento-row-span-2 reveal" style={{ transitionDelay: '0.1s', padding: '3rem', justifyContent: 'center' }}>
           <h2>
             Redefining the <br />
             <span className="gold-text">Visual Legacy.</span>
@@ -95,18 +96,20 @@ export default function About() {
         </div>
 
         <div
-          className="about-manifesto-image reveal"
-          style={{ transitionDelay: '0.3s' }}
+          className="about-manifesto-image bento-item bento-col-span-2 bento-row-span-2 reveal"
+          style={{ transitionDelay: '0.3s', padding: 0 }}
           role="button"
           tabIndex={0}
           onClick={() => setLightbox(1)}
           onKeyDown={(event) => event.key === 'Enter' && setLightbox(1)}
           aria-label="Open manifesto image"
         >
-          <img 
-            src={galleryHighlights[7]?.src} 
-            alt="Editorial Wedding Photographer" 
-          />
+          <div className="bento-img-wrapper" style={{ position: 'relative', height: '100%' }}>
+            <LazyImage 
+              src={galleryHighlights[7]?.src} 
+              alt="Editorial Wedding Photographer"
+            />
+          </div>
         </div>
       </section>
 
@@ -117,7 +120,7 @@ export default function About() {
           <h2>The <span className="gold-text">Apex</span> Approach</h2>
         </div>
 
-        <div className="approach-grid">
+        <div className="approach-grid bento-container">
           {[
             { title: "Unobtrusive Presence", desc: "We act as quiet observers, allowing your day to breathe naturally without forced direction or artificial staging." },
             { title: "Editorial Curation", desc: "Every image is hand-selected and meticulously color-graded to match the aesthetic of a high-end fashion publication." },
@@ -125,7 +128,7 @@ export default function About() {
           ].map((item, idx) => (
             <div 
               key={idx} 
-              className="approach-card reveal"
+              className={`approach-card bento-item reveal ${idx === 2 ? 'bento-col-span-2' : 'bento-col-span-1'}`}
               style={{ transitionDelay: `${idx * 0.15}s` }}
             >
               <div className="approach-num">0{idx + 1}.</div>

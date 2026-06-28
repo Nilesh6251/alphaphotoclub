@@ -213,8 +213,9 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .contact-layout { grid-template-columns: 1fr; }
-  .contact-info-col { position: static; }
+  .contact-layout { grid-template-columns: 1fr !important; }
+  .contact-info-col { position: static; grid-column: span 1 !important; padding: 1.5rem !important; }
+  .contact-form-col { grid-column: span 1 !important; padding: 1.5rem !important; }
   .form-row { grid-template-columns: 1fr; }
   .booking-form-card { padding: 2rem; }
 }

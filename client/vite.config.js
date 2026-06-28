@@ -8,4 +8,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    allowedHosts: [
+      'handstand-blot-john.ngrok-free.dev',
+      '.ngrok-free.dev'
+    ]
+  }
 });

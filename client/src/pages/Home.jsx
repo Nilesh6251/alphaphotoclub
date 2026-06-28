@@ -4,17 +4,29 @@ import { services, galleryHighlights, testimonials, stats } from '../data/siteDa
 import FullscreenLightbox from '../components/FullscreenLightbox';
 import bgImg from '../data/images/image1.jpg';
 import './Home.css';
+import LazyImage from '../components/LazyImage';
 
 export default function Home() {
   const observerRef = useRef(null);
   const heroRef = useRef(null);
   
-  // Refs for high-frequency DOM updates (fixes performance and invisible text)
-  const cursorRef = useRef(null);
+  // Refs for high-frequency DOM updates
   const heroBgRef = useRef(null);
   
   const [activeService, setActiveService] = useState(null);
   const [lightbox, setLightbox] = useState(null);
+
+  const getBentoSpan = (idx) => {
+    switch (idx) {
+      case 0: return 'bento-col-span-2 bento-row-span-2';
+      case 1: return 'bento-col-span-1 bento-row-span-1';
+      case 2: return 'bento-col-span-1 bento-row-span-2';
+      case 3: return 'bento-col-span-1 bento-row-span-1';
+      case 4: return 'bento-col-span-2 bento-row-span-1';
+      case 5: return 'bento-col-span-2 bento-row-span-1';
+      default: return 'bento-col-span-1 bento-row-span-1';
+    }
+  };
 
   const galleryItems = [
     { src: bgImg, title: 'Cinematic Wedding', category: 'Hero' },
@@ -34,16 +46,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /* ── Custom cursor (Refactored for Performance) ── */
-  useEffect(() => {
-    const moveCursor = (e) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
-      }
-    };
-    window.addEventListener('mousemove', moveCursor);
-    return () => window.removeEventListener('mousemove', moveCursor);
-  }, []);
 
   /* ── Intersection Observer for reveals ── */
   useEffect(() => {
@@ -68,12 +70,6 @@ export default function Home() {
 
   return (
     <div className="editorial-wrapper">
-      {/* Custom cursor blob using Ref directly */}
-      <div className="cursor-blob" ref={cursorRef} />
-
-      {/* Film grain */}
-      <div className="film-grain" aria-hidden="true" />
-
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="hero-editorial" ref={heroRef}>
         <div
@@ -82,7 +78,7 @@ export default function Home() {
           role="button"
           tabIndex={0}
           onClick={() => setLightbox(0)}
-          onKeyDown={(event) => event.key === 'Enter' && setLightbox(0)}
+          onKeyDown={(event) => (event.key === 'Enter' || event.key === ' ') && setLightbox(0)}
           aria-label="Open hero image"
         >
           <img
@@ -160,10 +156,10 @@ export default function Home() {
             role="button"
             tabIndex={0}
             onClick={() => setLightbox(1)}
-            onKeyDown={(event) => event.key === 'Enter' && setLightbox(1)}
+            onKeyDown={(event) => (event.key === 'Enter' || event.key === ' ') && setLightbox(1)}
             aria-label="Open manifesto image"
           >
-            <img
+            <LazyImage
               src={galleryHighlights[1]?.src}
               alt="Details"
             />
@@ -207,17 +203,17 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="staggered-grid">
+          <div className="bento-container">
             {(galleryHighlights?.length > 0 ? galleryHighlights : fallbackGallery).slice(0, 6).map((img, idx) => (
               <button
                 key={img.id || idx}
-                className={`staggered-item item-${(idx % 3) + 1} fade-up`}
+                className={`bento-item ${getBentoSpan(idx)} fade-up`}
                 style={{ transitionDelay: `${idx * 0.15}s` }}
                 onClick={() => setLightbox(idx + 2)}
                 aria-label={`Open ${img.title}`}
               >
-                <div className="staggered-img-wrapper">
-                  <img src={img.src} alt={img.title} loading="lazy" />
+                <div className="bento-img-wrapper">
+                  <LazyImage src={img.src} alt={img.title} />
                   <div className="img-overlay">
                     <span className="overlay-cta">View Story</span>
                   </div>
@@ -247,19 +243,17 @@ export default function Home() {
           <div className="services-header">
             <span className="eyebrow fade-up">What We Offer</span>
           </div>
-          <div className="services-list">
+          <div className="bento-container" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
             {(services?.length > 0 ? services : fallbackServices).slice(0, 4).map((s, idx) => (
-              /* FIX: Wrapped in a static div so React doesn't wipe the .is-revealed class */
-              <div className="fade-up" key={s.name || idx} style={{ transitionDelay: `${idx * 0.08}s` }}>
+              <div className="bento-item fade-up" key={s.name || idx} style={{ transitionDelay: `${idx * 0.08}s` }}>
                 <div
-                  className={`service-row ${activeService === idx ? 'is-active' : ''}`}
+                  className={`service-bento-card ${activeService === idx ? 'is-active' : ''}`}
                   onMouseEnter={() => setActiveService(idx)}
                   onMouseLeave={() => setActiveService(null)}
                 >
                   <div className="service-number">0{idx + 1}</div>
                   <h3 className="service-name">{s.name}</h3>
                   <p className="service-desc">{s.description || 'Bespoke visual storytelling crafted for your unique moment.'}</p>
-                  <div className="service-line" />
                   <Link to="/packages" className="service-arrow" aria-label={`Learn about ${s.name || 'our services'}`}>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -296,7 +290,7 @@ export default function Home() {
           role="button"
           tabIndex={0}
           onClick={() => setLightbox(galleryItems.length - 1)}
-          onKeyDown={(event) => event.key === 'Enter' && setLightbox(galleryItems.length - 1)}
+          onKeyDown={(event) => (event.key === 'Enter' || event.key === ' ') && setLightbox(galleryItems.length - 1)}
           aria-label="Open featured CTA image"
         >
           <img

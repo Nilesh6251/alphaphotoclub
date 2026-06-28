@@ -50,11 +50,11 @@ export default function Packages() {
 
       {/* ── PACKAGES GRID ── */}
       <section className="packages-container">
-        <div className="packages-grid">
+        <div className="packages-grid bento-container" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gridAutoRows: 'auto' }}>
           {displayPackages.map((pkg, idx) => (
             <div 
               key={pkg.id}
-              className={`package-card reveal ${pkg.popular ? 'is-popular' : ''}`}
+              className={`package-card bento-item reveal ${pkg.popular ? 'is-popular' : ''}`}
               style={{ transitionDelay: `${idx * 0.15}s` }}
             >
               {pkg.popular && (
@@ -101,11 +101,11 @@ export default function Packages() {
           </p>
         </div>
 
-        <div className="addons-grid">
+        <div className="addons-grid bento-container" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gridAutoRows: 'auto' }}>
           {addons.map((addon, idx) => (
             <div
               key={addon.name}
-              className="addon-card reveal"
+              className="addon-card bento-item reveal"
               style={{ transitionDelay: `${idx * 0.08}s` }}
             >
               <div className="addon-icon">{addon.icon}</div>

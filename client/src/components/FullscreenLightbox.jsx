@@ -33,7 +33,7 @@ export default function FullscreenLightbox({ items = [], index, onClose, onPrevi
       </button>
 
       {onPrevious && (
-        <button className="fs-lightbox__nav fs-lightbox__nav--prev" onClick={onPrevious} aria-label="Previous image">
+        <button className="fs-lightbox__nav fs-lightbox__nav--prev" onClick={(e) => { e.stopPropagation(); onPrevious(); }} aria-label="Previous image">
           <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path d="M13 4l-6 6 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -56,7 +56,7 @@ export default function FullscreenLightbox({ items = [], index, onClose, onPrevi
       </div>
 
       {onNext && (
-        <button className="fs-lightbox__nav fs-lightbox__nav--next" onClick={onNext} aria-label="Next image">
+        <button className="fs-lightbox__nav fs-lightbox__nav--next" onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next image">
           <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>

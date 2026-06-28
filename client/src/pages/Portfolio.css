@@ -226,11 +226,21 @@ a { text-decoration: none; color: inherit; }
 /* ═══════════════════════════════════════════════════
    GRID
 ═══════════════════════════════════════════════════ */
-.pf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
+
+.masonry-grid {
+  column-count: 3;
+  column-gap: 1.25rem;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  display: block;
 }
 
 /* ── Grid item ── */
@@ -238,12 +248,7 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  background: linear-gradient(180deg, rgba(243, 239, 230, 0.94), rgba(26, 26, 26, 0.96));
-  aspect-ratio: 3 / 4;
-  border-radius: 18px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
-
+  
   /* Reveal animation */
   opacity: 0;
   transform: scale(0.98);
@@ -252,11 +257,6 @@ a { text-decoration: none; color: inherit; }
     transform 0.7s var(--ts);
 }
 
-.p-item:nth-child(4n + 1) { transform: rotate(-1.25deg) translateY(0); }
-.p-item:nth-child(4n + 2) { transform: rotate(1.1deg) translateY(2rem); }
-.p-item:nth-child(4n + 3) { transform: rotate(-0.8deg) translateY(1rem); }
-.p-item:nth-child(4n + 4) { transform: rotate(1.5deg) translateY(3rem); }
-
 .p-item.is-visible {
   opacity: 1;
   transform: scale(1);
@@ -264,7 +264,6 @@ a { text-decoration: none; color: inherit; }
 
 .p-item:hover {
   z-index: 2;
-  transform: translateY(-10px) rotate(0deg) scale(1.01);
 }
 
 .p-item img {
@@ -656,10 +655,9 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 960px) {
-  .pf-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .masonry-grid {
+    column-count: 2;
   }
-
   .pf-hero-count { display: none; }
 
   .lb-prev { left: 0.75rem; }
@@ -668,13 +666,10 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 600px) {
-  .pf-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .masonry-grid {
+    column-count: 1;
   }
-
   .p-item {
-    aspect-ratio: 4 / 5;
     border-radius: 14px;
   }
 

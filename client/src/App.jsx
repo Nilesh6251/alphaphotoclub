@@ -1,14 +1,16 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import WhatsAppFAB from './components/WhatsAppFAB';
-import Home from './pages/Home';
-import Portfolio from './pages/Portfolio';
-import About from './pages/About';
-import Packages from './pages/Packages';
-import Testimonials from './pages/Testimonials';
-import Contact from './pages/Contact';
 import Footer from './components/Footer';
+
+// Lazy loaded routes
+const Home = lazy(() => import('./pages/Home'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
+const About = lazy(() => import('./pages/About'));
+const Packages = lazy(() => import('./pages/Packages'));
+const Testimonials = lazy(() => import('./pages/Testimonials'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 /* Scroll to top on route change */
 function ScrollToTop() {
@@ -33,14 +35,16 @@ function AppRoutes() {
       <ScrollToTop />
       <Navbar />
       <PageTransition>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/packages" element={<Packages />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--pearl)', backgroundColor: 'var(--ink)' }}>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/packages" element={<Packages />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Suspense>
       </PageTransition>
       <Footer />
       <WhatsAppFAB />

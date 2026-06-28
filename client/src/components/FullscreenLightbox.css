@@ -80,6 +80,7 @@
 .fs-lightbox__close,
 .fs-lightbox__nav {
   position: fixed;
+  z-index: 100;
   border: 1px solid rgba(244, 240, 234, 0.12);
   background: rgba(5, 5, 5, 0.55);
   color: var(--pearl, #f4f0ea);
@@ -126,7 +127,7 @@
   }
 
   .fs-lightbox__close {
-    top: 1rem;
+    top: max(1rem, env(safe-area-inset-top));
     right: 1rem;
   }
 

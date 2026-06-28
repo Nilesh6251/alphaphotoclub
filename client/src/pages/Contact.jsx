@@ -65,10 +65,10 @@ export default function Contact() {
         <div className="gold-line" />
       </div>
 
-      <div className="container">
-        <div className="contact-layout">
+      <div className="container" style={{ padding: '0 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div className="bento-container contact-layout" style={{ gridTemplateColumns: 'repeat(12, 1fr)' }}>
           {/* Left: Contact Info */}
-          <aside className="contact-info-col">
+          <aside className="contact-info-col bento-item" style={{ gridColumn: 'span 5', padding: '2.5rem' }}>
             <h2>Contact <span className="gold-text">Information</span></h2>
             <p className="ci-sub">Reach out and we'll get back to you within 24 hours.</p>
 
@@ -136,8 +136,8 @@ export default function Contact() {
           </aside>
 
           {/* Right: Booking Form */}
-          <div className="contact-form-col">
-            <div className="booking-form-card">
+          <div className="contact-form-col bento-item" style={{ gridColumn: 'span 7', padding: '2.5rem' }}>
+            <div className="booking-form-card" style={{ border: 'none', background: 'transparent', padding: 0, boxShadow: 'none' }}>
               <h3>Booking <span className="gold-text">Inquiry</span></h3>
               <p className="form-sub">Fill in your details and we'll contact you within 24 hours.</p>
 

@@ -84,16 +84,11 @@
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba(26, 26, 26, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .addon-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .addon-icon {
@@ -151,15 +146,10 @@
   flex-direction: column;
   height: 100%;
   padding: 2.5rem;
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .package-card:hover {
-  border-color: rgba(212, 175, 55, 0.3);
   transform: translateY(-8px);
 }
 
@@ -406,14 +396,14 @@
 /* ── Responsive ── */
 @media (max-width: 960px) {
   .packages-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     max-width: 500px;
-
-  .addons-grid {
-    grid-template-columns: 1fr;
-  }
     margin: 0 auto;
     gap: 3rem;
+  }
+
+  .addons-grid {
+    grid-template-columns: 1fr !important;
   }
 
   .package-card.is-popular {

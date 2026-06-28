@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { portfolioGroups } from '../data/siteData';
+import { galleryHighlights, portfolioGroups } from '../data/siteData';
 import FullscreenLightbox from '../components/FullscreenLightbox';
+import LazyImage from '../components/LazyImage';
 import './Portfolio.css';
 
 const CATEGORIES = [
@@ -101,12 +102,12 @@ export default function Portfolio() {
 
       {/* ═══ GRID ═══ */}
       <main className="pf-container" ref={gridRef}>
-        <div className="pf-grid">
+        <div className="masonry-grid">
           {filtered.map((item, idx) => {
             return (
               <div
                 key={item.id}
-                className="p-item"
+                className="masonry-item p-item"
                 data-category={item.category}
                 onClick={() => setLightbox(idx)}
                 style={{ transitionDelay: `${(idx % 9) * 0.06}s` }}
@@ -116,13 +117,11 @@ export default function Portfolio() {
                 onKeyDown={(e) => e.key === 'Enter' && setLightbox(idx)}
               >
                 {!loaded[item.id] && <div className="p-skeleton" aria-hidden="true" />}
-                <img
+                <LazyImage
                   src={item.src}
                   alt={item.title}
                   onError={(e) => handleError(e, item)}
                   onLoad={() => setLoaded((p) => ({ ...p, [item.id]: true }))}
-                  loading="lazy"
-                  style={{ opacity: loaded[item.id] ? 1 : 0 }}
                 />
                 <div className="p-overlay">
                   <div className="p-overlay-inner">
